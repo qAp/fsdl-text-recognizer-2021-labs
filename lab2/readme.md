@@ -112,6 +112,8 @@ In particular, edit the `ConvBlock` module to be more like a ResNet block, as sh
 
 ![](./resblock.png)
 
+Residual blocks are explained here: https://d2l.ai/chapter_convolutional-modern/resnet.html#residual-blocks.
+
 Some other things to try:
 
 - Try adding more of the ResNet secret sauce, such as `BatchNorm`. Take a look at the official ResNet PyTorch implementation for ideas: https://github.com/pytorch/vision/blob/master/torchvision/models/resnet.py
