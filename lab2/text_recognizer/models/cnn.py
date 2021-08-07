@@ -20,7 +20,8 @@ class ConvBlock(nn.Module):
         super().__init__()
         self.conv1 = nn.Conv2d(input_channels, output_channels, kernel_size=3, stride=1, padding=1)
         self.conv2 = nn.Conv2d(output_channels, output_channels, kernel_size=3, stride=1, padding=1)
-        
+
+        self.use_1x1conv = False
         if input_channels != output_channels:
             self.use_1x1conv = True
             self.conv3 = nn.Conv2d(input_channels, output_channels, kernel_size=1, stride=1)
