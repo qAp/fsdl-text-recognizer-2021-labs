@@ -18,7 +18,13 @@ class ConvBlock(nn.Module):
 
     def __init__(self, input_channels: int, output_channels: int) -> None:
         super().__init__()
-        self.conv = nn.Conv2d(input_channels, output_channels, kernel_size=3, stride=1, padding=1)
+        self.conv1 = nn.Conv2d(input_channels, output_channels, kernel_size=3, stride=1, padding=1)
+        self.conv2 = nn.Conv2d(output_channels, output_channels, kernel_size=3, stride=1, padding=1)
+        
+        if input_channels != output_channels:
+            self.use_1x1conv = True
+            self.conv3 = nn.Conv2d(input_channels, output_channels, kernel_size=1, stride=1)
+            
         self.relu = nn.ReLU()
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
@@ -33,7 +39,13 @@ class ConvBlock(nn.Module):
         torch.Tensor
             of dimensions (B, C, H, W)
         """
-        c = self.conv(x)
+        c = self.conv1(x)
+        r = self.relu(c)
+        c = self.conv2(r)
+        
+        if self.use_1x1conv:
+            c = c + self.conv3(x)
+            
         r = self.relu(c)
         return r
 
