@@ -152,6 +152,8 @@ python training/run_experiment.py --max_epochs=10 --gpus=1 --num_workers=4 --dat
 
 This gets ~15% CER.
 
+<p style="color:blue;"> CTC loss is explained in this blog post: https://distill.pub/2017/ctc/ </p>
+
 ## Add LSTM
 
 Lastly, we can add an LSTM on top of our `LineCNN` and see even more improvement.
