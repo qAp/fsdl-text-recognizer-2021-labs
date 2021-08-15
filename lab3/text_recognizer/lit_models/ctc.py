@@ -91,7 +91,7 @@ class CTCLitModel(BaseLitModel):  # pylint: disable=too-many-ancestors
         decoded = self.greedy_decode(logprobs, max_length=y.shape[1])
         self.val_acc(decoded, y)
         self.log("val_acc", self.val_acc, on_step=False, on_epoch=True)
-        self.val_cer(decoded, y)
+#        self.val_cer(decoded, y)
         self.log("val_cer", self.val_cer, on_step=False, on_epoch=True, prog_bar=True)
 
     def test_step(self, batch, batch_idx):  # pylint: disable=unused-argument
@@ -101,7 +101,7 @@ class CTCLitModel(BaseLitModel):  # pylint: disable=too-many-ancestors
         decoded = self.greedy_decode(logprobs, max_length=y.shape[1])
         self.test_acc(decoded, y)
         self.log("test_acc", self.test_acc, on_step=False, on_epoch=True)
-        self.test_cer(decoded, y)
+#        self.test_cer(decoded, y)
         self.log("test_cer", self.test_cer, on_step=False, on_epoch=True, prog_bar=True)
 
     def greedy_decode(self, logprobs: torch.Tensor, max_length: int) -> torch.Tensor:
